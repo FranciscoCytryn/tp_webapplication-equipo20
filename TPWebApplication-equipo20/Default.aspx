@@ -18,7 +18,7 @@
                     <h6 class="card-text">$<%= articulo.Precio.ToString() %></h6>
                     <h5 class="card-text"><%: articulo.Marca %></h5>
                 </div>
-                <img src="<%: articulo.Imagenes%>" class="card-img-top" alt="...">
+                <img src="<%= articulo.Imagenes.FirstOrDefault()?.ImagenURL %>" class="card-img-top" alt="Imagen del artículo">
                 <p></p>
                 <button type="button" class="btn btn-primary btn-sm">Agregar al carrito</button>
                 <p></p>
