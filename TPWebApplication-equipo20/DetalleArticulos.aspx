@@ -2,26 +2,36 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 
-
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    <% foreach (Dominio.Articulo articulo in ArticuloList) { %>
-        <% if (articulo.ID == ID) { %>
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title"><%: articulo.Nombre %></h5>
-                    <h6 class="card-text">$<%= articulo.Precio.ToString() %></h6>
-                    <h5 class="card-text"><%: articulo.Marca %></h5>
-                </div>
-                <% string imagenUrl = articulo.Imagenes.FirstOrDefault()?.ImagenURL; %>
-                <img src="<%: !string.IsNullOrEmpty(imagenUrl) && UrlExists(imagenUrl) ? imagenUrl : "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png" %>" class="card-img-top" alt="Imagen del artículo">
-                <p></p>
-                <button type="button" class="btn btn-primary btn-sm">Agregar al carrito</button>
-                <p></p>
-                <a class="btn btn-secondary btn-sm" href="DetalleArticulos.aspx?id=<%= articulo.ID %>">Ver detalle</a>
-            </div>
-        <% } %>
-    <% } %>
+<div class="container py-5">
+     <h1 class="text-center mb-5"> Detalle del Articulo</h1>
+    <div class="row">
+                <div class="col-md-1 text-center"></div>
+        <div class="col-md-4">
+            <% foreach (Dominio.Articulo articulo in ArticuloList) { %>
+                <% if (articulo.ID == IDArt) { %>
+                    <div class="m-4">
+                        <h4><strong>Producto:</strong> <%: articulo.Nombre %></h4>
+                        <p><strong>Precio:</strong> $<%= articulo.Precio.ToString() %></p>
+                        <p><strong>Marca:</strong> <%: articulo.Marca %></p>
+                        <p><strong>Descripción:</strong> <%: articulo.Descripcion %></p>
+                        <button type="button" class="btn btn-primary btn-sm">Agregar al carrito</button>
+                    </div>
+                <% } %>
+            <% } %>
+            <a href="javascript:history.back()" class="btn btn-secondary btn-sm">Volver</a>
+        </div>
+        <div class="col-md-6 text-center">
+            <% foreach (Dominio.Articulo articulo in ArticuloList) { %>
+                <% if (articulo.ID == IDArt) { %>
+                    <% string imagenUrl = articulo.Imagenes.FirstOrDefault()?.ImagenURL; %>
+                    <img src="<%: !string.IsNullOrEmpty(imagenUrl) && UrlExists(imagenUrl) ? imagenUrl : "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png" %>" class="img-fluid" alt="Imagen del artículo" style="max-width: 100%;">
+                <% } %>
+            <% } %>
+        </div>
+        <div class="col-md-1 text-center"></div>
+    </div>
 </div>
+
 
 
 

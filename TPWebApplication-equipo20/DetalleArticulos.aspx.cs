@@ -13,7 +13,7 @@ namespace TPWebApplication_equipo20
     public partial class WebForm1 : System.Web.UI.Page
     {
         public List<Articulo> ArticuloList;
-        public int ID { get; set; }
+        public int IDArt { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
            
@@ -23,7 +23,7 @@ namespace TPWebApplication_equipo20
 
                     if (!string.IsNullOrEmpty(idParametro))
                     {
-                        ID = Convert.ToInt32(idParametro);
+                        IDArt = Convert.ToInt32(idParametro);
 
                     }
                 }
