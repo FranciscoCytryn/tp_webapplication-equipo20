@@ -7,6 +7,7 @@
             <h1 id="aspnetTitle">CommerceManager System WEB 1.0</h1>
             <p class="lead">Bienvenidos al sitio número 1 de compras online</p>
         </section>
+
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <% 
                 foreach(Dominio.Articulo articulo in ArticuloList)
@@ -19,6 +20,7 @@
                     <h5 class="card-text"><%: articulo.Marca %></h5>
                 </div>
                 <img src="<%= articulo.Imagenes.FirstOrDefault()?.ImagenURL %>" class="card-img-top" alt="Imagen del artículo">
+
                 <p></p>
                 <button type="button" class="btn btn-primary btn-sm">Agregar al carrito</button>
                 <p></p>
@@ -28,6 +30,7 @@
            <%  } %>
                 
         </div>
+
     </main>
 
 </asp:Content>
