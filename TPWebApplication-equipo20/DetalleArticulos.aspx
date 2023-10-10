@@ -3,9 +3,9 @@
 
 
 <div class="container py-5">
-     <h1 class="text-center mb-5"> Detalle del Articulo</h1>
+    <h1 class="text-center mb-5">Detalle del Articulo</h1>
     <div class="row">
-                <div class="col-md-1 text-center"></div>
+        <div class="col-md-1 text-center"></div>
         <div class="col-md-4">
             <% foreach (Dominio.Articulo articulo in ArticuloList) { %>
                 <% if (articulo.ID == IDArt) { %>
@@ -23,14 +23,50 @@
         <div class="col-md-6 text-center">
             <% foreach (Dominio.Articulo articulo in ArticuloList) { %>
                 <% if (articulo.ID == IDArt) { %>
-                    <% string imagenUrl = articulo.Imagenes.FirstOrDefault()?.ImagenURL; %>
-                    <img src="<%: !string.IsNullOrEmpty(imagenUrl) && UrlExists(imagenUrl) ? imagenUrl : "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png" %>" class="img-fluid" alt="Imagen del artículo" style="max-width: 100%;">
+                    <div>
+                        <% string imagenUrl = articulo.Imagenes[0].ImagenURL; %>
+                        <img id="imagenProducto" src="<%= !string.IsNullOrEmpty(imagenUrl) && UrlExists(imagenUrl) ? imagenUrl : "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png" %>" class="custom-img" alt="Imagen del artículo">
+                    </div>
+                    <div>
+                        <button type="button" id="btnAnterior" class="btn btn-primary btn-sm">Anterior</button>
+                        <button type="button" id="btnSiguiente" class="btn btn-primary btn-sm">Siguiente</button>
+                    </div>
+                    <script>
+                        var imagenes = [<% foreach (Dominio.Imagen imagen in articulo.Imagenes) { %> "<%= imagen.ImagenURL %>", <% } %>];
+                        var imagenActual = 0;
+
+                        document.getElementById('btnAnterior').addEventListener('click', function () {
+                            imagenActual = (imagenActual - 1 + imagenes.length) % imagenes.length;
+                            var nuevaImagen = new Image();
+                            nuevaImagen.onload = function () {
+                                document.getElementById('imagenProducto').src = imagenes[imagenActual];
+                            };
+                            nuevaImagen.onerror = function () {
+                                document.getElementById('imagenProducto').src = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png";
+                            };
+                            nuevaImagen.src = imagenes[imagenActual];
+                        });
+
+                        document.getElementById('btnSiguiente').addEventListener('click', function () {
+                            imagenActual = (imagenActual + 1 + imagenes.length) % imagenes.length;
+                            var nuevaImagen = new Image();
+                            nuevaImagen.onload = function () {
+                                document.getElementById('imagenProducto').src = imagenes[imagenActual];
+                            };
+                            nuevaImagen.onerror = function () {
+                                document.getElementById('imagenProducto').src = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png";
+                            };
+                            nuevaImagen.src = imagenes[imagenActual];
+                        });
+                    </script>
                 <% } %>
             <% } %>
         </div>
         <div class="col-md-1 text-center"></div>
     </div>
 </div>
+
+
 
 
 

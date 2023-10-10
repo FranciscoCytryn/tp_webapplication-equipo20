@@ -14,6 +14,7 @@ namespace TPWebApplication_equipo20
     {
         public List<Articulo> ArticuloList;
         public int IDArt { get; set; }
+        public List<Imagen> ListImagenes { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
            
@@ -27,13 +28,12 @@ namespace TPWebApplication_equipo20
 
                     }
                 }
-            
-
-
-
-
             ArticuloNegocio negocio = new ArticuloNegocio();
             ArticuloList = negocio.listar();
+
+            ImagenNegocio ima= new ImagenNegocio();
+            ListImagenes = ima.Listar(IDArt);
+
 
 
         }
