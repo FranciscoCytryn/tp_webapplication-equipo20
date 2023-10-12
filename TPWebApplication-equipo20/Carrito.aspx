@@ -21,19 +21,14 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:ButtonField ButtonType="Button" CommandName="Actualizar" Text="Actualizar" />
-
-
                     <asp:CommandField ShowDeleteButton="True" DeleteText="Eliminar" HeaderText="Acciones" />
                 </Columns>
             </asp:GridView>
         </div>
-
         <br />
         <asp:Label ID="lblTotal" runat="server" Text="Total: "></asp:Label>
-
         <br />
         <asp:Button ID="btnCheckout" runat="server" Text="Proceder al Pago" OnClick="btnCheckout_Click" />
-
     </main>
 </asp:Content>
 

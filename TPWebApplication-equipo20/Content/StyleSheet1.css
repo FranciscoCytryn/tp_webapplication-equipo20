@@ -1,13 +1,21 @@
-﻿   .card:hover {
-        transform: scale(1.05); /* Cambia el tamaño de la tarjeta al 105% del tamaño original */
-        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); /* Agrega una sombra suave */
-    }
+﻿.card:hover {
+    transform: scale(1.05); /* Cambia el tamaño de la tarjeta al 105% del tamaño original */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); /* Agrega una sombra suave */
+}
 
-    /* Establece una transición suave para el efecto hover */
-    .card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+/* Establece una transición suave para el efecto hover */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 .custom-img {
     width: 400px; /* Cambia el valor según el tamaño deseado */
     height: 400px; /* Cambia el valor según el tamaño deseado */
 }
+
+.custom-form-control {
+    width: 100px;
+    height: 100px;
+}
+
+

@@ -9,26 +9,33 @@
         </section>
 
 
-<div class="container align-content-center">
-    <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
-        <asp:Repeater ID="rptArticulos" runat="server" OnItemCommand="rptArticulos_ItemCommand">
-            <ItemTemplate>
-                <div class="card mb-4" style="width: 18rem; margin-right: 10px;">
-                    <div class="card-body">
-                        <h5 class="card-title"><%# Eval("Nombre") %></h5>
-                        <h6 class="card-text">$<%# Eval("Precio") %></h6>
-                        <h5 class="card-text"><%# Eval("Marca.Descripcion") %></h5>
-                    </div>
-                    <img src='<%# Eval("ImagenURL") %>' class="card-img-top" alt="Imagen del artículo">
-                    <p></p>
-                    <asp:Button ID="btnAgregarCarrito" runat="server" CssClass="btn btn-primary btn-sm" Text="Agregar al carrito" CommandName="Agregar" CommandArgument='<%# Eval("ID") %>' />
-                    <p></p>
-                    <a class="btn btn-secondary btn-sm" href='<%# "DetalleArticulos.aspx?id=" + Eval("ID") %>'>Ver detalle</a>
-                </div>
-            </ItemTemplate>
-        </asp:Repeater>
-    </div>
-</div>
+        <div class="container align-content-center">
+            <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+                <asp:Repeater ID="rptArticulos" runat="server" OnItemCommand="rptArticulos_ItemCommand">
+                    <ItemTemplate>
+                        <div class="card mb-4" style="width: 18rem; margin-right: 10px;">
+                            <div class="card-body">
+                                <h5 class="card-title"><%# Eval("Nombre") %></h5>
+                                <h6 class="card-text">$<%# Eval("Precio") %></h6>
+                                <h5 class="card-text"><%# Eval("Marca.Descripcion") %></h5>
+                            </div>
+                            <img src='<%# Eval("ImagenURL") %>' class="card-img-top" alt="Imagen del artículo">
+                            <p></p>
+                            <asp:Button ID="btnAgregarCarrito" runat="server" CssClass="btn btn-primary btn-sm" Text="Agregar al carrito" CommandName="Agregar" CommandArgument='<%# Eval("ID") %>' />
+                            <p></p>
+                            <a class="btn btn-secondary btn-sm" href='<%# "DetalleArticulos.aspx?id=" + Eval("ID") %>'>Ver detalle</a>
+                            <p></p>
+                            <div class="quantity d-flex justify-content-center align-items-center">
+                                <asp:Button ID="btnDecrement" runat="server" Text="-" CssClass="btn btn-sm btn-secondary" OnClick="btnDecrement_Click" />
+                                <asp:TextBox ID="quantity" runat="server" CssClass="custom-form-control text-center" Text="1" />
+                                <asp:Button ID="btnIncrement" runat="server" Text="+" CssClass="btn btn-sm btn-secondary" OnClick="btnIncrement_Click" />
+                            </div>
+                            <p></p>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
+        </div>
 
     </main>
 
