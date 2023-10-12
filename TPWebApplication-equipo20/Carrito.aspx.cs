@@ -18,15 +18,7 @@ namespace TPWebApplication_equipo20
             {
                 if (Session["carrito"] != null)
                 {
-                    
-                    var carrito = (Dictionary<int, int>)Session["carrito"];
-                    DataTable dtProductosCarrito = ObtenerProductosPorIds(carrito);
-                    gvCarrito.DataSource = dtProductosCarrito;
-                    gvCarrito.DataBind();
-
-                    // Actualiza el total del carrito
-                    decimal total = dtProductosCarrito.AsEnumerable().Sum(row => row.Field<decimal>("Precio") * row.Field<int>("Cantidad"));
-                    lblTotal.Text = "Total: " + total.ToString("C");
+                    BindGrid();
                 }
             }
 
@@ -140,7 +132,7 @@ namespace TPWebApplication_equipo20
                 gvCarrito.DataBind();
 
                 // Actualiza el total del carrito
-                decimal total = dtProductosCarrito.AsEnumerable().Sum(row => row.Field<decimal>("Precio"));
+                decimal total = dtProductosCarrito.AsEnumerable().Sum(row => row.Field<decimal>("Precio") * row.Field<int>("Cantidad"));
                 lblTotal.Text = "Total: " + total.ToString("C");
             }
         }

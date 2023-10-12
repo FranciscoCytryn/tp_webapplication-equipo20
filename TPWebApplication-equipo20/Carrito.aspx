@@ -7,7 +7,8 @@
         <h3>Productos en tu carrito:</h3>
 
         <!-- Tabla para mostrar los productos en el carrito -->
-            <asp:GridView ID="gvCarrito" runat="server" AutoGenerateColumns="false" DataKeyNames="ID" EmptyDataText="No hay productos en el carrito." OnRowDeleting="gvCarrito_RowDeleting">
+        <div class="table-responsive">
+            <asp:GridView ID="gvCarrito" runat="server" CssClass="table table-dark table-striped" AutoGenerateColumns="false" DataKeyNames="ID" EmptyDataText="No hay productos en el carrito." OnRowDeleting="gvCarrito_RowDeleting">
                 <Columns>
                     <asp:BoundField DataField="ID" HeaderText="ID" />
                     <asp:BoundField DataField="Nombre" HeaderText="Nombre del Producto" />
@@ -25,6 +26,7 @@
                     <asp:CommandField ShowDeleteButton="True" DeleteText="Eliminar" HeaderText="Acciones" />
                 </Columns>
             </asp:GridView>
+        </div>
 
         <br />
         <asp:Label ID="lblTotal" runat="server" Text="Total: "></asp:Label>
