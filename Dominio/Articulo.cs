@@ -18,7 +18,17 @@ namespace Dominio
         public Categoria Categoria { get; set; }
         public decimal Precio { get; set; }
         public List<Imagen> Imagenes { get; set; }
-       
+        public string ImagenURL
+        {
+            get
+            {
+                if (Imagenes != null && Imagenes.Count > 0 && !string.IsNullOrEmpty(Imagenes[0].ImagenURL))
+                    return Imagenes[0].ImagenURL;
+                return "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png";
+            }
+        }
+
+
 
     }
 }

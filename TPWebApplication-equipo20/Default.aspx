@@ -7,27 +7,26 @@
             <h1 id="aspnetTitle">CommerceManager System WEB 1.0</h1>
             <p class="lead">Bienvenidos al sitio número 1 de compras online</p>
         </section>
+
+
 <div class="container align-content-center">
     <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
-        <% 
-            foreach(Dominio.Articulo articulo in ArticuloList)
-            {
-        %>
-        <div class="card mb-4" style="width: 18rem; margin-right: 10px;">
-            <div class="card-body">
-                <h5 class="card-title"><%: articulo.Nombre %></h5>
-                <h6 class="card-text">$<%= articulo.Precio.ToString() %></h6>
-                <h5 class="card-text"><%: articulo.Marca %></h5>
-            </div>
-            <% string imagenUrl = articulo.Imagenes.FirstOrDefault()?.ImagenURL; %>
-            <img src="<%: !string.IsNullOrEmpty(imagenUrl) && UrlExists(imagenUrl) ? imagenUrl :"https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png" %>"
-                class="card-img-top" alt="Imagen del artículo">
-            <p></p>
-            <button type="button" class="btn btn-primary btn-sm">Agregar al carrito</button>
-            <p></p>
-            <a class="btn btn-secondary btn-sm" href="DetalleArticulos.aspx?id=<%= articulo.ID %>">Ver detalle</a>
-        </div>
-        <%  } %>
+        <asp:Repeater ID="rptArticulos" runat="server" OnItemCommand="rptArticulos_ItemCommand">
+            <ItemTemplate>
+                <div class="card mb-4" style="width: 18rem; margin-right: 10px;">
+                    <div class="card-body">
+                        <h5 class="card-title"><%# Eval("Nombre") %></h5>
+                        <h6 class="card-text">$<%# Eval("Precio") %></h6>
+                        <h5 class="card-text"><%# Eval("Marca.Descripcion") %></h5>
+                    </div>
+                    <img src='<%# Eval("ImagenURL") %>' class="card-img-top" alt="Imagen del artículo">
+                    <p></p>
+                    <asp:Button ID="btnAgregarCarrito" runat="server" CssClass="btn btn-primary btn-sm" Text="Agregar al carrito" CommandName="Agregar" CommandArgument='<%# Eval("ID") %>' />
+                    <p></p>
+                    <a class="btn btn-secondary btn-sm" href='<%# "DetalleArticulos.aspx?id=" + Eval("ID") %>'>Ver detalle</a>
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
     </div>
 </div>
 

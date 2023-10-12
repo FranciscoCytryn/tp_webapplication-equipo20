@@ -16,3 +16,9 @@ C:\Users\luism\Desktop\ASP\TP_ASP\tp_webapplication-equipo20\Dominio\obj\Debug\D
 C:\Users\luism\Desktop\ASP\TP_ASP\tp_webapplication-equipo20\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
 C:\Users\luism\Desktop\ASP\TP_ASP\tp_webapplication-equipo20\Dominio\obj\Debug\Dominio.dll
 C:\Users\luism\Desktop\ASP\TP_ASP\tp_webapplication-equipo20\Dominio\obj\Debug\Dominio.pdb
+C:\Users\Buda\Desktop\CarritoWebGrupo4\tp_webapplication-equipo20\Dominio\bin\Debug\Dominio.dll
+C:\Users\Buda\Desktop\CarritoWebGrupo4\tp_webapplication-equipo20\Dominio\bin\Debug\Dominio.pdb
+C:\Users\Buda\Desktop\CarritoWebGrupo4\tp_webapplication-equipo20\Dominio\obj\Debug\Dominio.csproj.AssemblyReference.cache
+C:\Users\Buda\Desktop\CarritoWebGrupo4\tp_webapplication-equipo20\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+C:\Users\Buda\Desktop\CarritoWebGrupo4\tp_webapplication-equipo20\Dominio\obj\Debug\Dominio.dll
+C:\Users\Buda\Desktop\CarritoWebGrupo4\tp_webapplication-equipo20\Dominio\obj\Debug\Dominio.pdb

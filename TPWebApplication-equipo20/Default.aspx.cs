@@ -15,8 +15,17 @@ namespace TPWebApplication_equipo20
         public List<Articulo> ArticuloList;
         protected void Page_Load(object sender, EventArgs e)
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            ArticuloList = negocio.listar();
+            //ArticuloNegocio negocio = new ArticuloNegocio();
+            //ArticuloList = negocio.listar();
+
+            if (!IsPostBack)
+            {
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                ArticuloList = negocio.listar();
+
+                rptArticulos.DataSource = ArticuloList;
+                rptArticulos.DataBind();
+            }
         }
         public bool UrlExists(string url)
         {
@@ -32,6 +41,31 @@ namespace TPWebApplication_equipo20
             catch
             {
                 return false;
+            }
+        }
+
+        protected void rptArticulos_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "Agregar")
+            {
+                int productoId = Convert.ToInt32(e.CommandArgument);
+
+                // Inicializa el carrito como un diccionario si aún no se ha hecho.
+                if (Session["carrito"] == null)
+                {
+                    Session["carrito"] = new Dictionary<int, int>();
+                }
+
+                var carrito = (Dictionary<int, int>)Session["carrito"];
+
+                if (carrito.ContainsKey(productoId))
+                {
+                    carrito[productoId] += 1; // Incrementa la cantidad si ya existe en el carrito.
+                }
+                else
+                {
+                    carrito[productoId] = 1; // Si es la primera vez que se agrega, la cantidad es 1.
+                }
             }
         }
 
