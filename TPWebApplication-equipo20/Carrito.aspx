@@ -14,13 +14,6 @@
                     <asp:BoundField DataField="Nombre" HeaderText="Nombre del Producto" />
                     <asp:BoundField DataField="Precio" HeaderText="Precio Unitario" DataFormatString="{0:C}" />
                     <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
-
-                    <asp:TemplateField HeaderText="Cantidad">
-                        <ItemTemplate>
-                            <asp:TextBox ID="txtCantidad" runat="server" Text='<%# Bind("Cantidad") %>' Width="40"></asp:TextBox>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:ButtonField ButtonType="Button" CommandName="Actualizar" Text="Actualizar" />
                     <asp:CommandField ShowDeleteButton="True" DeleteText="Eliminar" HeaderText="Acciones" />
                 </Columns>
             </asp:GridView>
@@ -28,7 +21,14 @@
         <br />
         <asp:Label ID="lblTotal" runat="server" Text="Total: "></asp:Label>
         <br />
-        <asp:Button ID="btnCheckout" runat="server" Text="Proceder al Pago" OnClick="btnCheckout_Click" />
+        <asp:Button ID="btnCheckout" runat="server" Text="Proceder al Pago" OnClientClick="mostrarMensaje(); return false;" />
+        <script type="text/javascript">
+            function mostrarMensaje() {
+                alert("Función aún no disponible. Versión de prueba.");
+            }
+        </script>
+        <p></p>
+        <asp:Button ID="btnVolver" runat="server" Text="Volver al catalogo" OnClick="btnVolver_Click" />
     </main>
 </asp:Content>
 

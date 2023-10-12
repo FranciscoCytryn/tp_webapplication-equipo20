@@ -102,7 +102,6 @@ namespace TPWebApplication_equipo20
                 quantity.Text = currentValue.ToString();
             }
         }
-
     }
 }
 

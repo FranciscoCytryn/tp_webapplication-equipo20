@@ -28,6 +28,10 @@ namespace TPWebApplication_equipo20
         {
 
         }
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx");
+        }
 
         private void CargarProductosCarrito()
         {
@@ -78,49 +82,17 @@ namespace TPWebApplication_equipo20
             int productoId = Convert.ToInt32(gvCarrito.DataKeys[e.RowIndex].Value);
 
             var carrito = (Dictionary<int, int>)Session["carrito"];
-            int cantidadActual = carrito.ContainsKey(productoId) ? carrito[productoId] : 0;
-
-
-            // Obtener la cantidad que el usuario quiere eliminar.
-            GridViewRow row = gvCarrito.Rows[e.RowIndex];
-            TextBox txtCantidad = (TextBox)row.FindControl("txtCantidad");
-            int cantidadAEliminar = Convert.ToInt32(txtCantidad.Text);
-
-            if (cantidadAEliminar > cantidadActual) 
-            {   
-                //Mensaje de error si la cantidad a eliminar es mayor que la cantidad actual en el carrito.
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('No puedes eliminar más artículos de los que tienes en el carrito.');", true);
-                return;
-            }
-            else if (cantidadAEliminar == cantidadActual)
-            {
-                // Si la cantidad a eliminar es igual a la cantidad actual, elimina el producto del carrito.
-                carrito.Remove(productoId);
-            }
-            else
-            {
-                // Si la cantidad a eliminar es menor a la cantidad actual, actualiza la cantidad en el carrito.
-                carrito[productoId] = cantidadActual - cantidadAEliminar;
-            }
+                 
+            carrito.Remove(productoId);
+            
 
             BindGrid();
         }
 
         protected void gvCarrito_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Actualizar")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                int productId = Convert.ToInt32(gvCarrito.DataKeys[index].Value);
-                TextBox txtCantidad = (TextBox)gvCarrito.Rows[index].FindControl("txtCantidad");
-
-                var carrito = (Dictionary<int, int>)Session["carrito"];
-                carrito[productId] = Convert.ToInt32(txtCantidad.Text);
-
-                BindGrid();
-            }
+   
         }
-
 
         private void BindGrid()
         {
@@ -137,5 +109,6 @@ namespace TPWebApplication_equipo20
             }
         }
 
+       
     }
 }

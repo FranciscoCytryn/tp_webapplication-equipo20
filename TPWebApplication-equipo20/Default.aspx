@@ -26,9 +26,9 @@
                             <a class="btn btn-secondary btn-sm" href='<%# "DetalleArticulos.aspx?id=" + Eval("ID") %>'>Ver detalle</a>
                             <p></p>
                             <div class="quantity d-flex justify-content-center align-items-center">
-                                <asp:Button ID="btnDecrement" runat="server" Text="-" CssClass="btn btn-sm btn-secondary" OnClick="btnDecrement_Click" />
+                                <asp:Button ID="btnDecrement" runat="server" Text="-" CssClass="btn btn-sm btn-secondary" OnClick="btnDecrement_Click" UseSubmitBehavior="false"/>
                                 <asp:TextBox ID="quantity" runat="server" CssClass="custom-form-control text-center" Text="1" />
-                                <asp:Button ID="btnIncrement" runat="server" Text="+" CssClass="btn btn-sm btn-secondary" OnClick="btnIncrement_Click" />
+                                <asp:Button ID="btnIncrement" runat="server" Text="+" CssClass="btn btn-sm btn-secondary" OnClick="btnIncrement_Click" UseSubmitBehavior="false"/>
                             </div>
                             <p></p>
                         </div>

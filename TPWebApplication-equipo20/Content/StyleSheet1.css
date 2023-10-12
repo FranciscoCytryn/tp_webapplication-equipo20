@@ -14,8 +14,10 @@
 }
 
 .custom-form-control {
-    width: 100px;
-    height: 100px;
+    width: 25px;
+    height: 25px;
 }
 
-
+.lblTotal{
+    font-weight:bold;
+}
