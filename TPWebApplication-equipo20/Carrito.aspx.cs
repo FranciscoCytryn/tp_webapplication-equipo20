@@ -133,9 +133,25 @@ namespace TPWebApplication_equipo20
                 gvCarrito.DataSource = dtProductosCarrito;
                 gvCarrito.DataBind();
 
-                // Actualiza el total del carrito
-                decimal total = dtProductosCarrito.AsEnumerable().Sum(row => row.Field<decimal>("Precio") * row.Field<int>("Cantidad"));
-                lblTotal.Text = "Total: " + total.ToString("C");
+                if (carrito.Count == 0)
+                {
+                    pnlEmptyCart.Visible = true;
+                    gvCarrito.Visible = false;
+                }
+                else
+                {
+                    pnlEmptyCart.Visible = false;
+                    gvCarrito.Visible = true;
+
+                    // Actualiza el total del carrito
+                    decimal total = dtProductosCarrito.AsEnumerable().Sum(row => row.Field<decimal>("Precio") * row.Field<int>("Cantidad"));
+                    lblTotal.Text = "Total: " + total.ToString("C");
+                }
+            }
+            else
+            {
+                pnlEmptyCart.Visible = true;
+                gvCarrito.Visible = false;
             }
         }
 

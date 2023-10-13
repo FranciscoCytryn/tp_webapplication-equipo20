@@ -8,7 +8,7 @@
 
         <!-- Tabla para mostrar los productos en el carrito -->
         <div class="table-responsive">
-            <asp:GridView ID="gvCarrito" runat="server" CssClass="table table-dark table-striped" AutoGenerateColumns="false" DataKeyNames="ID" EmptyDataText="No hay productos en el carrito." OnRowDeleting="gvCarrito_RowDeleting" OnRowCommand="gvCarrito_RowCommand">
+            <asp:GridView ID="gvCarrito" runat="server" CssClass="table table-dark table-striped" AutoGenerateColumns="false" DataKeyNames="ID" EmptyDataText="Tu carrito está vacío." OnRowDeleting="gvCarrito_RowDeleting" OnRowCommand="gvCarrito_RowCommand">
                 <Columns>
                     <asp:BoundField DataField="ID" HeaderText="ID" />
                     <asp:BoundField DataField="Nombre" HeaderText="Nombre del Producto" />
@@ -24,6 +24,11 @@
                 </Columns>
             </asp:GridView>
         </div>
+        <asp:Panel ID="pnlEmptyCart" runat="server" Visible="false">
+            <img src="https://www.pngkey.com/png/detail/411-4119504_el-carrito-de-la-compra-est-vaco-shopping.png" alt="" />
+            <h2>Tu carrito está vacío</h2>
+             <p>¡Parece que no has añadido nada aún!</p>
+        </asp:Panel>
         <br />
         <asp:Label ID="lblTotal" runat="server" Text="Total: "></asp:Label>
         <br />

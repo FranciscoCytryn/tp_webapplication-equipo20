@@ -21,3 +21,31 @@
 .lblTotal{
     font-weight:bold;
 }
+
+.pnlEmptyCart {
+    text-align: center;
+    padding: 50px;
+    border: 1px dashed #ccc;
+    margin-top: 20px;
+}
+
+.pnlEmptyCart img {
+    max-width: 100%;
+    height: auto;
+}
+
+    .pnlEmptyCart h2 {
+        font-size: 24px;
+        color: #333;
+        margin-top: 20px;
+    }
+
+    .pnlEmptyCart p {
+        font-size: 18px;
+        color: #777;
+    }
+
+    .pnlEmptyCart .btn {
+        margin-top: 20px;
+    }
+
