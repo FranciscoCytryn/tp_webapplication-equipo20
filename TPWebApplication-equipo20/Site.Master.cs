@@ -11,7 +11,24 @@ namespace TPWebApplication_equipo20
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                UpdateContadorCarrito();
+            }
+        }
 
+        public void UpdateContadorCarrito()
+        {
+            if (Session["carrito"] != null)
+            {
+                var carrito = (Dictionary<int, int>)Session["carrito"];
+                int totalItems = carrito.Values.Sum();
+                cartCount.InnerText = totalItems.ToString();
+            }
+            else
+            {
+                cartCount.InnerText = "0";
+            }
         }
     }
 }

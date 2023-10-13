@@ -71,6 +71,9 @@ namespace TPWebApplication_equipo20
                 {
                     carrito[productoId] = cantidadAgregada; // Si es la primera vez que se agrega, la cantidad es 1.
                 }
+
+                // Actualizar el contador del carrito en el nav
+                ((SiteMaster)this.Master).UpdateContadorCarrito();
             }
         }
         protected void btnDecrement_Click(object sender, EventArgs e)

@@ -8,12 +8,18 @@
 
         <!-- Tabla para mostrar los productos en el carrito -->
         <div class="table-responsive">
-            <asp:GridView ID="gvCarrito" runat="server" CssClass="table table-dark table-striped" AutoGenerateColumns="false" DataKeyNames="ID" EmptyDataText="No hay productos en el carrito." OnRowDeleting="gvCarrito_RowDeleting">
+            <asp:GridView ID="gvCarrito" runat="server" CssClass="table table-dark table-striped" AutoGenerateColumns="false" DataKeyNames="ID" EmptyDataText="No hay productos en el carrito." OnRowDeleting="gvCarrito_RowDeleting" OnRowCommand="gvCarrito_RowCommand">
                 <Columns>
                     <asp:BoundField DataField="ID" HeaderText="ID" />
                     <asp:BoundField DataField="Nombre" HeaderText="Nombre del Producto" />
                     <asp:BoundField DataField="Precio" HeaderText="Precio Unitario" DataFormatString="{0:C}" />
-                    <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
+                    <asp:TemplateField HeaderText="Cantidad">
+                        <ItemTemplate>
+                            <asp:Button ID="btnDecrement" runat="server" Text="-" CommandName="Decrement" CommandArgument='<%# Eval("ID") %>' CssClass="btn btn-secondary btn-sm" OnClientClick="return confirmDecrement(this);"/>
+                            <asp:Label ID="lblCantidad" runat="server" Text='<%# Eval("Cantidad") %>'></asp:Label>
+                            <asp:Button ID="btnIncrement" runat="server" Text="+" CommandName="Increment" CommandArgument='<%# Eval("ID") %>' CssClass="btn btn-secondary btn-sm" />
+                         </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:CommandField ShowDeleteButton="True" DeleteText="Eliminar" HeaderText="Acciones" />
                 </Columns>
             </asp:GridView>

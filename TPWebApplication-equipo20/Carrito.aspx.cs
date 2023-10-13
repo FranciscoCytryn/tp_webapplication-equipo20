@@ -91,7 +91,32 @@ namespace TPWebApplication_equipo20
 
         protected void gvCarrito_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-   
+            var carrito = (Dictionary<int, int>)Session["carrito"];
+
+            int productoId = Convert.ToInt32(e.CommandArgument);
+
+            if (carrito.ContainsKey(productoId))
+            {
+                if (e.CommandName == "Decrement")
+                {
+                    // Si la cantidad es mayor que 1, decremente. Si es 1, simplemente elimine el producto del carrito.
+                    if (carrito[productoId] > 1)
+                    {
+                        carrito[productoId] -= 1;
+                    }
+                    else
+                    {
+                        carrito.Remove(productoId);
+                    }
+                }
+                else if (e.CommandName == "Increment")
+                {
+                    // Aumenta la cantidad del producto en el carrito.
+                    carrito[productoId] += 1;
+                }
+            }
+
+            BindGrid();
         }
 
         private void BindGrid()
