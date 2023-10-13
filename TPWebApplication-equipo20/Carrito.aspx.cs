@@ -87,6 +87,8 @@ namespace TPWebApplication_equipo20
             
 
             BindGrid();
+            // Actualizar el contador del carrito en el nav
+            ((SiteMaster)this.Master).UpdateContadorCarrito();
         }
 
         protected void gvCarrito_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -117,6 +119,9 @@ namespace TPWebApplication_equipo20
             }
 
             BindGrid();
+
+            // Actualizar el contador del carrito en el nav
+            ((SiteMaster)this.Master).UpdateContadorCarrito();
         }
 
         private void BindGrid()
