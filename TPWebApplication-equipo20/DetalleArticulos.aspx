@@ -77,10 +77,4 @@
             <div class="col-md-1 text-center"></div>
         </div>
     </div>
-
-
-
-
-
-
 </asp:Content>
