@@ -8,6 +8,44 @@
             <p class="lead">Bienvenidos al sitio número 1 de compras online</p>
         </section>
 
+    <div class="container">
+        <h3>Filtros</h3>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="marcaDropdown">Marca</label>
+                    <asp:DropDownList ID="marcaDropdown" runat="server" CssClass="form-control">
+                    </asp:DropDownList>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="categoriaDropdown">Categoría</label>
+                    <asp:DropDownList ID="categoriaDropdown" runat="server" CssClass="form-control">
+                    </asp:DropDownList>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="precioTextBox">Precio Máximo</label>
+                    <asp:TextBox ID="precioTextBox" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="descripcionTextBox">Descripción</label>
+                    <asp:TextBox ID="descripcionTextBox" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <asp:Button ID="btnFiltrar" runat="server" CssClass="btn btn-primary" Text="Aplicar Filtros" OnClick="btnFiltrar_Click" />
+            </div>
+        </div>
+    </div>
+    <hr>
+
 
         <div class="container align-content-center">
             <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">

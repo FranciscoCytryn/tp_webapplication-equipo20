@@ -139,5 +139,93 @@ namespace Negocio
                 throw ex;
             }
         }
+
+        public List<Articulo> ListarConFiltro(string marca, string categoria, decimal? precioMaximo, string descripcion)
+        {
+
+           List<Articulo> lista = new List<Articulo>();
+           AccesoDatos datos = new AccesoDatos();
+        //    StringBuilder consultaBase = new StringBuilder(@"
+        //        SELECT 
+        //            A.Id, 
+        //            A.Codigo, 
+        //            A.Nombre, 
+        //            A.Descripcion, 
+        //            A.Precio,
+        //            C.Descripcion AS CATEGORIA, 
+        //            M.Descripcion AS Marca,
+        //            A.IdCategoria,
+        //            A.IdMarca 
+        //        FROM Articulos A
+        //        LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id
+        //        LEFT JOIN MARCAS M ON A.IdMarca = M.Id
+        //        WHERE 1=1");
+
+            try
+            {
+        //        if (!string.IsNullOrEmpty(marca))
+        //        {
+        //            consultaBase.Append(" AND M.Descripcion = @marca");
+        //            datos.agregarParametro("@marca", marca);
+        //        }
+        //        if (!string.IsNullOrEmpty(categoria) && categoria != "0")
+        //        {
+        //            consultaBase.Append(" AND Categoria = @categoria");
+        //            datos.agregarParametro("@categoria", categoria);
+        //        }
+        //        if (precioMaximo.HasValue)
+        //        {
+        //            consultaBase.Append(" AND Precio <= @precioMaximo");
+        //            datos.agregarParametro("@precioMaximo", precioMaximo.Value);
+        //        }
+        //        if (!string.IsNullOrEmpty(descripcion))
+        //        {
+        //            consultaBase.Append(" AND Descripcion LIKE @descripcion");
+        //            datos.agregarParametro("@descripcion", "%" + descripcion + "%");
+        //        }
+
+
+        //        datos.setearConsulta(consultaBase.ToString());
+        //        datos.ejecutarLectura();
+
+        //        while (datos.Lector.Read())
+        //        {
+        //            Articulo aux = new Articulo();
+
+        //            aux.ID = (int)datos.Lector["Id"];
+        //            aux.Codigo = datos.Lector["Codigo"]?.ToString();
+        //            aux.Nombre = datos.Lector["Nombre"]?.ToString();
+        //            aux.Descripcion = datos.Lector["Descripcion"]?.ToString();
+        //            aux.Precio = (decimal)(datos.Lector["Precio"] ?? 0);
+
+        //            aux.Categoria = new Categoria
+        //            {
+        //                Descripcion = datos.Lector["CATEGORIA"]?.ToString(),
+        //                ID = (int)(datos.Lector["IdCategoria"] ?? 0)
+        //            };
+
+        //            aux.Marca = new Marca
+        //            {
+        //                Descripcion = datos.Lector["Marca"]?.ToString(),
+        //                ID = (int)(datos.Lector["IdMarca"] ?? 0)
+        //            };
+
+        //            //aux.Imagenes = ImagenNegocio.Listar(aux.ID);
+
+        //            lista.Add(aux);
+        //       }
+
+                return lista;
+            }
+           catch (Exception ex)
+           {
+               throw ex;
+           }
+           finally
+           {
+               datos.cerrarConexion();
+           }
+        }
+
     }
 }

@@ -23,6 +23,9 @@ namespace TPWebApplication_equipo20
 
             if (!IsPostBack)
             {
+                LlenarMarcas();
+                LlenarCategorias();
+
                 ArticuloNegocio negocio = new ArticuloNegocio();
                 ArticuloList = negocio.listar();
 
@@ -104,6 +107,42 @@ namespace TPWebApplication_equipo20
                 currentValue++;
                 quantity.Text = currentValue.ToString();
             }
+        }
+        private void LlenarMarcas()
+        {
+            MarcaNegocio negocio = new MarcaNegocio();
+            marcaDropdown.DataSource = negocio.Listar();
+            marcaDropdown.DataTextField = "Descripcion";
+            marcaDropdown.DataValueField = "ID";
+            marcaDropdown.DataBind();
+            marcaDropdown.Items.Insert(0, new ListItem("Todas las marcas", "0"));
+        }
+        private void LlenarCategorias()
+        {
+            CategoriaNegocio negocio = new CategoriaNegocio();
+            categoriaDropdown.DataSource = negocio.Listar();
+            categoriaDropdown.DataTextField = "Descripcion";
+            categoriaDropdown.DataValueField = "ID";
+            categoriaDropdown.DataBind();
+            categoriaDropdown.Items.Insert(0, new ListItem("Todas las categorías", "0"));
+        }
+
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            string marcaSeleccionada = marcaDropdown.SelectedValue;
+            string categoriaSeleccionada = categoriaDropdown.SelectedValue;
+            decimal? precioMaximo = null;
+            if (decimal.TryParse(precioTextBox.Text, out decimal result))
+            {
+                precioMaximo = result;
+            }
+            string descripcion = descripcionTextBox.Text;
+
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            List<Articulo> articulosFiltrados = negocio.ListarConFiltro(marcaSeleccionada, categoriaSeleccionada, precioMaximo, descripcion);
+
+            rptArticulos.DataSource = articulosFiltrados;
+            rptArticulos.DataBind();
         }
     }
 }

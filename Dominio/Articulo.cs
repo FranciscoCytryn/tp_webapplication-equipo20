@@ -27,8 +27,5 @@ namespace Dominio
                 return "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png";
             }
         }
-
-
-
     }
 }
