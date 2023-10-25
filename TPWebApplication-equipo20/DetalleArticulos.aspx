@@ -8,9 +8,11 @@
         <div class="row">
             <div class="col-md-1 text-center"></div>
             <div class="col-md-4">
-                <% foreach (Dominio.Articulo articulo in ArticuloList)
-                    { %>
-                <% if (articulo.ID == IDArt)
+
+                <% if (Session["IDArt"] != null)    { %>
+                <% foreach (Dominio.Articulo articulo in (List<Dominio.Articulo>)Session["ArticuloList"])
+                    { %> 
+                <% if (articulo.ID == (int)Session["IDArt"])
                     { %>
                 <div class="m-4">
                     <h4><strong>Producto:</strong> <%: articulo.Nombre %></h4>
@@ -27,12 +29,12 @@
                 </div>
                 <% } %>
                 <% } %>
-                <a href="javascript:history.back()" class="btn btn-secondary btn-sm">Volver</a>
+                <a href="Default.aspx" class="btn btn-secondary btn-sm">Volver</a>
             </div>
             <div class="col-md-6 text-center">
-                <% foreach (Dominio.Articulo articulo in ArticuloList)
+                <% foreach (Dominio.Articulo articulo in  (List<Dominio.Articulo>)Session["ArticuloList"])
                     { %>
-                <% if (articulo.ID == IDArt)
+                <% if (articulo.ID == (int)Session["IDArt"])
                     { %>
                 <div>
                     <% string imagenUrl = articulo.Imagenes[0].ImagenURL; %>
@@ -43,7 +45,7 @@
                     <button type="button" id="btnSiguiente" class="btn btn-primary btn-sm">Siguiente</button>
                 </div>
                 <script>
-                    var imagenes = [<% foreach (Dominio.Imagen imagen in articulo.Imagenes)
+                    var imagenes = [<% foreach (Dominio.Imagen imagen in (List<Dominio.Imagen>)Session["ListImagenes"] )
                     { %> "<%= imagen.ImagenURL %>", <% } %>];
                     var imagenActual = 0;
 
@@ -71,6 +73,7 @@
                         nuevaImagen.src = imagenes[imagenActual];
                     });
                 </script>
+                <% } %>
                 <% } %>
                 <% } %>
             </div>

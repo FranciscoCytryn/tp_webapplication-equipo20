@@ -21,22 +21,25 @@ namespace TPWebApplication_equipo20
             if (!IsPostBack)
             {
                 string idParametro = Request.QueryString["id"];
-
                 if (!string.IsNullOrEmpty(idParametro))
                 {
                     IDArt = Convert.ToInt32(idParametro);
-
+                    Session["IDArt"]=IDArt;
                 }
-            }
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            ArticuloList = negocio.listar();
-
-            ImagenNegocio ima = new ImagenNegocio();
-            ListImagenes = ima.Listar(IDArt);
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                ArticuloList = negocio.listar();
+                Session["ArticuloList"] = ArticuloList;
 
 
-
+               ImagenNegocio ima = new ImagenNegocio();
+               ListImagenes = ima.Listar(IDArt);
+                Session["ListImagenes"] = ListImagenes;
         }
+
+
+
+            }   
+        
 
         public bool UrlExists(string url)
         {
