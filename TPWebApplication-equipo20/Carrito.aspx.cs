@@ -155,6 +155,12 @@ namespace TPWebApplication_equipo20
             }
         }
 
-       
+        protected void Unnamed_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("Default.aspx");
+
+
+        }
     }
 }

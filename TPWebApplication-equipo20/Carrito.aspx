@@ -40,6 +40,7 @@
         </script>
         <p></p>
         <asp:Button ID="btnVolver" runat="server" Text="Volver al catalogo" OnClick="btnVolver_Click" />
+        <asp:Button Text="Cerrar Sesion" runat="server" OnClick="Unnamed_Click" />
     </main>
 </asp:Content>
 
