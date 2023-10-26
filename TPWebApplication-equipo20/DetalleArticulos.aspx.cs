@@ -59,6 +59,12 @@ namespace TPWebApplication_equipo20
         }
         protected void btnDecrement_Click(object sender, EventArgs e)
         {
+            // Obtén el botón que desencadenó el evento.
+            Button btnDecrement = (Button)sender;
+
+            // Obtén el TextBox asociado al botón.
+            TextBox quantity = (TextBox)btnDecrement.Parent.FindControl("quantity");
+
             if (quantity != null)
             {
                 int cantidad = int.Parse(quantity.Text);
@@ -72,6 +78,12 @@ namespace TPWebApplication_equipo20
 
         protected void btnIncrement_Click(object sender, EventArgs e)
         {
+            // Obtén el botón que desencadenó el evento.
+            Button btnIncrement = (Button)sender;
+
+            // Obtén el TextBox asociado al botón.
+            TextBox quantity = (TextBox)btnIncrement.Parent.FindControl("quantity");
+
             if (quantity != null)
             {
                 int cantidad = int.Parse(quantity.Text);
@@ -79,31 +91,37 @@ namespace TPWebApplication_equipo20
                 quantity.Text = cantidad.ToString();
             }
         }
-        protected void rptArticulos_ItemCommand(object source, RepeaterCommandEventArgs e)
+
+        protected void btnAgregarCarrito_Click(object sender, EventArgs e)
         {
-            if (e.CommandName == "Agregar")
+            // Obtén el botón que desencadenó el evento.
+            Button btnAgregarCarrito = (Button)sender;
+
+            // Obtén el TextBox asociado al botón.
+            TextBox quantity = (TextBox)btnAgregarCarrito.Parent.FindControl("quantity");
+
+            int productoId = (int)Session["IDArt"]; // Obtén el ID del artículo de tu modelo, puede variar según la estructura real.
+
+            int cantidadAgregada = int.Parse(quantity.Text);
+
+            // Inicializa el carrito como un diccionario si aún no se ha hecho.
+            if (Session["carrito"] == null)
             {
-                int productoId = Convert.ToInt32(e.CommandArgument);
-                TextBox quantity = e.Item.FindControl("quantity") as TextBox;
-                int cantidadAgregada = int.Parse(quantity.Text);
-
-                // Inicializa el carrito como un diccionario si aún no se ha hecho.
-                if (Session["carrito"] == null)
-                {
-                    Session["carrito"] = new Dictionary<int, int>();
-                }
-
-                var carrito = (Dictionary<int, int>)Session["carrito"];
-
-                if (carrito.ContainsKey(productoId))
-                {
-                    carrito[productoId] += cantidadAgregada; // Incrementa la cantidad si ya existe en el carrito.
-                }
-                else
-                {
-                    carrito[productoId] = cantidadAgregada; // Si es la primera vez que se agrega, la cantidad es 1.
-                }
+                Session["carrito"] = new Dictionary<int, int>();
             }
+
+            var carrito = (Dictionary<int, int>)Session["carrito"];
+
+            if (carrito.ContainsKey(productoId))
+            {
+                carrito[productoId] += cantidadAgregada; // Incrementa la cantidad si ya existe en el carrito.
+            }
+            else
+            {
+                carrito[productoId] = cantidadAgregada; // Si es la primera vez que se agrega, la cantidad es 1.
+            }
+
+            ((SiteMaster)this.Master).UpdateContadorCarrito();
         }
     }
 }

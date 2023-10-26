@@ -25,7 +25,7 @@
                         <asp:Button ID="btnIncrement" runat="server" Text="+" CssClass="btn btn-sm btn-secondary" OnClick="btnIncrement_Click" UseSubmitBehavior="false" />
                     </div>
                     <p></p>
-                    <asp:Button ID="btnAgregarCarrito" runat="server" CssClass="btn btn-primary btn-sm" Text="Agregar al carrito" CommandName="Agregar" CommandArgument='<%# Eval("ID") %>' />
+                    <asp:Button ID="btnAgregarCarrito" runat="server" CssClass="btn btn-primary btn-sm" Text="Agregar al carrito" onclick="btnAgregarCarrito_Click"  />
                 </div>
                 <% } %>
                 <% } %>
