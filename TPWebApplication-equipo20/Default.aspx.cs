@@ -26,12 +26,25 @@ namespace TPWebApplication_equipo20
                 LlenarMarcas();
                 LlenarCategorias();
 
-                ArticuloNegocio negocio = new ArticuloNegocio();
+
+   ArticuloNegocio negocio = new ArticuloNegocio();
                 ArticuloList = negocio.listar();
 
                 rptArticulos.DataSource = ArticuloList;
                 rptArticulos.DataBind();
+
+                Session["listaArt"] = ArticuloList;
+
+
             }
+
+
+
+             
+
+
+
+
         }
         public bool UrlExists(string url)
         {
@@ -129,18 +142,39 @@ namespace TPWebApplication_equipo20
 
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
-            string marcaSeleccionada = marcaDropdown.SelectedValue;
-            string categoriaSeleccionada = categoriaDropdown.SelectedValue;
+            List<Articulo> articulosFiltrados = (List<Articulo>)Session["listaArt"];
+
+            // Obtener los valores seleccionados por el usuario
+            int marcaSeleccionada = int.Parse(marcaDropdown.SelectedValue);
+            int categoriaSeleccionada = int.Parse( categoriaDropdown.SelectedValue);
             decimal? precioMaximo = null;
             if (decimal.TryParse(precioTextBox.Text, out decimal result))
             {
                 precioMaximo = result;
             }
-            string descripcion = descripcionTextBox.Text;
 
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            List<Articulo> articulosFiltrados = negocio.ListarConFiltro(marcaSeleccionada, categoriaSeleccionada, precioMaximo, descripcion);
+            // Realizar los filtros
+            if (marcaSeleccionada > 0)
+            {
+                // Filtrar por marca si se seleccionó una marca válida
+                articulosFiltrados = articulosFiltrados.FindAll(a => a.Marca.ID == marcaSeleccionada);
+            }
 
+            if (categoriaSeleccionada>0)
+            {
+                // Filtrar por categoría si se seleccionó una categoría válida
+                articulosFiltrados = articulosFiltrados.FindAll(a => a.Categoria.ID == categoriaSeleccionada);
+            }
+
+            if (precioMaximo.HasValue)
+            {
+                // Filtrar por precio máximo si se proporcionó un valor válido
+                articulosFiltrados = articulosFiltrados.FindAll(a => a.Precio <= precioMaximo);
+            }
+
+          
+
+            // Asignar los resultados al control de datos
             rptArticulos.DataSource = articulosFiltrados;
             rptArticulos.DataBind();
         }

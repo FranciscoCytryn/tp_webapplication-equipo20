@@ -31,12 +31,7 @@
                     <asp:TextBox ID="precioTextBox" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="descripcionTextBox">Descripción</label>
-                    <asp:TextBox ID="descripcionTextBox" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-            </div>
+         
         </div>
         <div class="row">
             <div class="col-md-4">
